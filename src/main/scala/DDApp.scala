@@ -16,7 +16,7 @@ object DDApp extends ProcessTokens {
     println("")
     println("Application ready .....".toUpperCase())
     println("Type in your text.")
-    println("Once you are done, type :q or :quit to begin processing.")
+    println("Once you are done inputting your text, go to a new line (ENTER) and then type :q or :quit to begin processing.")
     println("")
     println("")
     resourceManager.using(new BufferedReader(new InputStreamReader(System.in))) {
