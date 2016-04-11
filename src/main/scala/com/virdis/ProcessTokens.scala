@@ -8,6 +8,10 @@ import opennlp.tools.tokenize.WhitespaceTokenizer
   */
 trait ProcessTokens {
 
+
+  /**
+    * Fixed Map of commonly used abbreviations
+    */
   val ABBREVIATIONS = Map(
     "ab"   -> "a.b.",
     "abbr" -> "abbr.",
@@ -54,8 +58,17 @@ trait ProcessTokens {
     "st" -> "st."
 
   )
+
+  /**
+    * Punctuation Regex
+    */
   val PUNCTUATION = "\\p{Punct}"
 
+  /**
+    * clean token with the Punctuation regex and return the new token
+    * @param str
+    * @return
+    */
   def removePunctuations(str: String): String = {
     val cleanText = str.replaceAll(PUNCTUATION, "")
 
@@ -110,6 +123,13 @@ trait ProcessTokens {
 
     }
 
+  /**
+    * method to merge maps m1, m2
+    * @param m1 Map[String, ResultTokens]
+    * @param m2 Map[String, ResultTokens]
+    * @return Map[String, ResultTokens]
+    */
+
 
   def mergeMap(m1: Map[String, ResultTokens], m2: Map[String, ResultTokens]): Map[String, ResultTokens] = {
     (m1.keySet ++ m2.keySet).foldLeft(Map.empty[String, ResultTokens]) {
@@ -117,6 +137,13 @@ trait ProcessTokens {
         acc.updated(key, mergeResultTokens(m1.get(key), m2.get(key)))
     }
   }
+
+  /**
+    * merge ResultTokens
+    * @param r1 ResultTokens
+    * @param r2 ResultTokens
+    * @return ResultTokens
+    */
 
   def mergeResultTokens(r1: Option[ResultTokens], r2: Option[ResultTokens]): ResultTokens = {
     (r1, r2) match {
@@ -126,6 +153,11 @@ trait ProcessTokens {
       case _ => throw new Exception("This is an impossible state") // keys are part of either maps, so there should be some values
     }
   }
+
+  /**
+    * method to pretty print the result
+    * @param res
+    */
 
   def prettyPrinting(res: Map[String, ResultTokens]) = {
     val keys = res.keySet.toList.sorted
