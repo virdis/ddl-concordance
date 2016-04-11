@@ -4,12 +4,10 @@ organization := "com.virdis"
 
 version := "0.0.1"
 
-scalaVersion := "2.11.5"
+scalaVersion := "2.11.7"
 
 libraryDependencies ++= Seq(
-  "org.apache.opennlp" % "opennlp-tools" % "1.6.0",
-  "org.scalatest" %% "scalatest" % "2.2.1" % "test" withSources() withJavadoc(),
-  "org.scalacheck" %% "scalacheck" % "1.12.1" % "test" withSources() withJavadoc()
+  "org.apache.opennlp" % "opennlp-tools" % "1.6.0"
 )
 
 initialCommands := "import com.virdis.ddlconc._"
